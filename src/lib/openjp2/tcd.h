@@ -164,8 +164,8 @@ typedef struct opj_tcd_tilecomp
 	OPJ_UINT32 resolutions_size;        /* size of data for resolutions (in bytes) */
 	OPJ_INT32 *data;                    /* data of the component */
 	OPJ_BOOL  ownsData;                 /* if true, then need to free after usage, otherwise do not free */
-	OPJ_UINT32 data_size_needed;        /* we may either need to allocate this amount of data, or re-use image data and ignore this value */
-	OPJ_UINT32 data_size;               /* size of the data of the component */
+	size_t data_size_needed;            /* we may either need to allocate this amount of data, or re-use image data and ignore this value */
+	size_t data_size;                   /* size of the data of the component */
 	OPJ_INT32 numpix;                   /* add fixed_quality */
 } opj_tcd_tilecomp_t;
 
