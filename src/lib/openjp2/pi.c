@@ -238,6 +238,13 @@ static OPJ_BOOL opj_pi_next_lrcp(opj_pi_iterator_t * pi)
     opj_pi_resolution_t *res = NULL;
     OPJ_UINT32 index = 0;
 
+    if (pi->poc.compno0 >= pi->numcomps ||
+            pi->poc.compno1 >= pi->numcomps + 1) {
+        opj_event_msg(pi->manager, EVT_ERROR,
+                      "opj_pi_next_lrcp(): invalid compno0/compno1\n");
+        return OPJ_FALSE;
+    }
+
     if (!pi->first) {
         comp = &pi->comps[pi->compno];
         res = &comp->resolutions[pi->resno];
@@ -291,6 +298,13 @@ static OPJ_BOOL opj_pi_next_rlcp(opj_pi_iterator_t * pi)
     opj_pi_resolution_t *res = NULL;
     OPJ_UINT32 index = 0;
 
+    if (pi->poc.compno0 >= pi->numcomps ||
+            pi->poc.compno1 >= pi->numcomps + 1) {
+        opj_event_msg(pi->manager, EVT_ERROR,
+                      "opj_pi_next_rlcp(): invalid compno0/compno1\n");
+        return OPJ_FALSE;
+    }
+
     if (!pi->first) {
         comp = &pi->comps[pi->compno];
         res = &comp->resolutions[pi->resno];
@@ -336,6 +350,13 @@ static OPJ_BOOL opj_pi_next_rpcl(opj_pi_iterator_t * pi)
     opj_pi_comp_t *comp = NULL;
     opj_pi_resolution_t *res = NULL;
     OPJ_UINT32 index = 0;
+
+    if (pi->poc.compno0 >= pi->numcomps ||
+            pi->poc.compno1 >= pi->numcomps + 1) {
+        opj_event_msg(pi->manager, EVT_ERROR,
+                      "opj_pi_next_rpcl(): invalid compno0/compno1\n");
+        return OPJ_FALSE;
+    }
 
     if (!pi->first) {
         goto LABEL_SKIP;
@@ -472,7 +493,7 @@ static OPJ_BOOL opj_pi_next_pcrl(opj_pi_iterator_t * pi)
     if (pi->poc.compno0 >= pi->numcomps ||
             pi->poc.compno1 >= pi->numcomps + 1) {
         opj_event_msg(pi->manager, EVT_ERROR,
-                      "opj_pi_next_pcrl(): invalid compno0/compno1");
+                      "opj_pi_next_pcrl(): invalid compno0/compno1\n");
         return OPJ_FALSE;
     }
 
@@ -610,7 +631,7 @@ static OPJ_BOOL opj_pi_next_cprl(opj_pi_iterator_t * pi)
     if (pi->poc.compno0 >= pi->numcomps ||
             pi->poc.compno1 >= pi->numcomps + 1) {
         opj_event_msg(pi->manager, EVT_ERROR,
-                      "opj_pi_next_cprl(): invalid compno0/compno1");
+                      "opj_pi_next_cprl(): invalid compno0/compno1\n");
         return OPJ_FALSE;
     }
 
